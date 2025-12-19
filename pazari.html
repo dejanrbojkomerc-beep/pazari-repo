@@ -1,0 +1,65 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8">
+            <title>Pazari 2025-12-19</title>
+            <!-- 🔄 Auto-refresh na svakih 300 sekundi -->
+            <meta http-equiv="refresh" content="300">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+                th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+                th { background-color: #f2f2f2; }
+                canvas { max-width: 100%; height: auto; }
+            </style>
+        </head>
+        <body>
+            <h2>Pazari za 2025-12-19</h2>
+            <canvas id="chart"></canvas>
+            <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>RADNJA</th>
+      <th>DATDOK</th>
+      <th>IZNOS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Zemun</td>
+      <td>2025-12-19</td>
+      <td>83608.48</td>
+    </tr>
+  </tbody>
+</table>
+            <script>
+                const ctx = document.getElementById('chart').getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Zemun'],
+                        datasets: [{
+                            label: 'Promet (din)',
+                            data: [83608.48],
+                            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { display: false },
+                            title: { display: true, text: 'Promet po radnjama' }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            </script>
+        </body>
+        </html>
+        
