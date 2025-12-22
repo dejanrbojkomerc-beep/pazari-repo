@@ -6,78 +6,45 @@
     <title>Pazari poslednja 3 dana</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="300">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: Arial, sans-serif; margin: 16px; }
         table { border-collapse: collapse; width: 100%; margin-top: 16px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
         th { background-color: #f2f2f2; text-align: center; }
         td:first-child, th:first-child { text-align: left; }
-        canvas { max-width: 100%; height: auto; margin-top: 24px; }
     </style>
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
-    <style type="text/css">
-</style>
-<table id="T_7f334">
+    <table border="1" class="dataframe">
   <thead>
-    <tr>
-      <th class="index_name level0" >DATDOK</th>
-      <th id="T_7f334_level0_col0" class="col_heading level0 col0" >2025-12-22</th>
-      <th id="T_7f334_level0_col1" class="col_heading level0 col1" >2025-12-21</th>
-      <th id="T_7f334_level0_col2" class="col_heading level0 col2" >2025-12-20</th>
-    </tr>
-    <tr>
-      <th class="index_name level0" >RADNJA</th>
-      <th class="blank col0" >&nbsp;</th>
-      <th class="blank col1" >&nbsp;</th>
-      <th class="blank col2" >&nbsp;</th>
+    <tr style="text-align: right;">
+      <th>DATDOK</th>
+      <th>2025-12-22</th>
+      <th>2025-12-21</th>
+      <th>2025-12-20</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th id="T_7f334_level0_row0" class="row_heading level0 row0" >Loznica</th>
-      <td id="T_7f334_row0_col0" class="data row0 col0" >11,099.98</td>
-      <td id="T_7f334_row0_col1" class="data row0 col1" >206,145.04</td>
-      <td id="T_7f334_row0_col2" class="data row0 col2" >244,813.22</td>
+      <th>Loznica</th>
+      <td>11,099.98</td>
+      <td>206,145.04</td>
+      <td>244,813.22</td>
     </tr>
     <tr>
-      <th id="T_7f334_level0_row1" class="row_heading level0 row1" >Zemun</th>
-      <td id="T_7f334_row1_col0" class="data row1 col0" >14,511.38</td>
-      <td id="T_7f334_row1_col1" class="data row1 col1" >0.00</td>
-      <td id="T_7f334_row1_col2" class="data row1 col2" >172,775.97</td>
+      <th>Zemun</th>
+      <td>14,511.38</td>
+      <td>0.00</td>
+      <td>172,775.97</td>
+    </tr>
+    <tr>
+      <th>Ukupno</th>
+      <td>25,611.36</td>
+      <td>206,145.04</td>
+      <td>417,589.19</td>
     </tr>
   </tbody>
 </table>
-
-    <canvas id="chart"></canvas>
-    <script>
-        const ctx = document.getElementById('chart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["2025-12-22", "2025-12-21", "2025-12-20"],
-                datasets: [{"label": "Loznica", "data": [11099.98, 206145.04, 244813.22], "backgroundColor": "rgba(54, 162, 235, 0.6)", "borderColor": "rgba(54, 162, 235, 1)", "borderWidth": 1}, {"label": "Zemun", "data": [14511.38, 0.0, 172775.97], "backgroundColor": "rgba(255, 99, 132, 0.6)", "borderColor": "rgba(255, 99, 132, 1)", "borderWidth": 1}]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: { display: true, text: 'Promet po radnjama (poslednja 3 dana)' },
-                    legend: { position: 'bottom' }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return Number(value).toLocaleString('sr-RS');
-                            }
-                        }
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>
