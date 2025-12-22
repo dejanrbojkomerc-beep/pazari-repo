@@ -1,28 +1,30 @@
 
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8">
-            <title>Pazari poslednja 3 dana</title>
-            <meta http-equiv="refresh" content="300">
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 20px; }
-                table { border-collapse: collapse; width: 100%; margin-top: 20px; }
-                th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
-                th { background-color: #f2f2f2; }
-                canvas { max-width: 100%; height: auto; margin-top: 30px; }
-            </style>
-        </head>
-        <body>
-            <h2>Pazari za poslednja 3 dana</h2>
-            <table border="1" class="dataframe">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pazari poslednja 3 dana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="300">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 16px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 16px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
+        th { background-color: #f2f2f2; text-align: center; }
+        td:first-child, th:first-child { text-align: left; }
+        canvas { max-width: 100%; height: auto; margin-top: 24px; }
+    </style>
+</head>
+<body>
+    <h2>Pazari za poslednja 3 dana</h2>
+    <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th>DATDOK</th>
-      <th>2025-12-20</th>
-      <th>2025-12-21</th>
       <th>2025-12-22</th>
+      <th>2025-12-21</th>
+      <th>2025-12-20</th>
     </tr>
     <tr>
       <th>RADNJA</th>
@@ -34,38 +36,46 @@
   <tbody>
     <tr>
       <th>Loznica</th>
-      <td>244813.22</td>
-      <td>206145.04</td>
-      <td>7735.01</td>
+      <td>7.735,01</td>
+      <td>206.145,04</td>
+      <td>244.813,22</td>
     </tr>
     <tr>
       <th>Zemun</th>
-      <td>172775.97</td>
-      <td>0.00</td>
-      <td>1174.99</td>
+      <td>1.174,99</td>
+      <td>0,00</td>
+      <td>172.775,97</td>
     </tr>
   </tbody>
 </table>
-            <canvas id="chart"></canvas>
-            <script>
-                const ctx = document.getElementById('chart').getContext('2d');
-                const chart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['2025-12-20', '2025-12-21', '2025-12-22'],
-                        datasets: [{'label': 'Loznica', 'data': [np.float64(244813.22), np.float64(206145.04), np.float64(7735.01)], 'backgroundColor': 'rgba(54, 162, 235, 0.6)', 'borderColor': 'rgba(54, 162, 235, 1)', 'borderWidth': 1}, {'label': 'Zemun', 'data': [np.float64(172775.97), np.float64(0.0), np.float64(1174.99)], 'backgroundColor': 'rgba(255, 99, 132, 0.6)', 'borderColor': 'rgba(255, 99, 132, 1)', 'borderWidth': 1}]
-                    },
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            title: { display: true, text: 'Promet po radnjama (poslednja 3 dana)' }
-                        },
-                        scales: {
-                            y: { beginAtZero: true }
+    <canvas id="chart"></canvas>
+    <script>
+        const ctx = document.getElementById('chart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["2025-12-22", "2025-12-21", "2025-12-20"],
+                datasets: [{"label": "Loznica", "data": [7735.01, 206145.04, 244813.22], "backgroundColor": "rgba(54, 162, 235, 0.6)", "borderColor": "rgba(54, 162, 235, 1)", "borderWidth": 1}, {"label": "Zemun", "data": [1174.99, 0.0, 172775.97], "backgroundColor": "rgba(255, 99, 132, 0.6)", "borderColor": "rgba(255, 99, 132, 1)", "borderWidth": 1}]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: { display: true, text: 'Promet po radnjama (poslednja 3 dana)' },
+                    legend: { position: 'bottom' }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                // format RSD sa razdvajanjem hiljada
+                                return value.toLocaleString('sr-RS');
+                            }
                         }
                     }
-                });
-            </script>
-        </body>
-        </html>
-        
+                }
+            }
+        });
+    </script>
+</body>
+</html>
