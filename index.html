@@ -20,9 +20,9 @@
   <thead>
     <tr style="text-align: right;">
       <th>DATDOK</th>
-      <th>2025-12-19</th>
       <th>2025-12-20</th>
       <th>2025-12-21</th>
+      <th>2025-12-22</th>
     </tr>
     <tr>
       <th>RADNJA</th>
@@ -34,15 +34,15 @@
   <tbody>
     <tr>
       <th>Loznica</th>
-      <td>146184.96</td>
       <td>244813.22</td>
       <td>206145.04</td>
+      <td>2640.0</td>
     </tr>
     <tr>
       <th>Zemun</th>
-      <td>169178.72</td>
-      <td>176039.95</td>
+      <td>172775.97</td>
       <td>0.00</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -52,8 +52,8 @@
                 const chart = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['2025-12-19', '2025-12-20', '2025-12-21'],
-                        datasets: [{'label': 'Loznica', 'data': [np.float64(146184.96), np.float64(244813.22), np.float64(206145.04)], 'backgroundColor': 'rgba(54, 162, 235, 0.6)', 'borderColor': 'rgba(54, 162, 235, 1)', 'borderWidth': 1}, {'label': 'Zemun', 'data': [np.float64(169178.72), np.float64(176039.94999999998), np.float64(0.0)], 'backgroundColor': 'rgba(255, 99, 132, 0.6)', 'borderColor': 'rgba(255, 99, 132, 1)', 'borderWidth': 1}]
+                        labels: ['2025-12-20', '2025-12-21', '2025-12-22'],
+                        datasets: [{'label': 'Loznica', 'data': [np.float64(244813.22), np.float64(206145.04), np.float64(2640.0)], 'backgroundColor': 'rgba(54, 162, 235, 0.6)', 'borderColor': 'rgba(54, 162, 235, 1)', 'borderWidth': 1}, {'label': 'Zemun', 'data': [np.float64(172775.97), np.float64(0.0), np.float64(0.0)], 'backgroundColor': 'rgba(255, 99, 132, 0.6)', 'borderColor': 'rgba(255, 99, 132, 1)', 'borderWidth': 1}]
                     },
                     options: {
                         responsive: true,
