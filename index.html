@@ -7,24 +7,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="300">
     <style>
-        body { font-family: Arial, sans-serif; margin: 16px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 16px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
-        th { background-color: #f2f2f2; text-align: center; position: sticky; top: 0; }
-        td:first-child, th:first-child { text-align: left; }
+        :root {
+            --bg: #ffffff;
+            --fg: #111111;
+            --muted: #666;
+            --border: #ddd;
+            --accent: #3b82f6;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 12px;
+            background: var(--bg);
+            color: var(--fg);
+        }
+        h2 {
+            margin: 16px 0 8px 0;
+            font-size: 18px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 720px; /* da ne sabija previše na telefonu */
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 8px;
+            text-align: right;
+            white-space: nowrap;
+        }
+        th {
+            background-color: #f5f5f5;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+        td:first-child, th:first-child {
+            text-align: left;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: #fff;
+        }
         tr:nth-child(even) { background-color: #fafafa; }
         tr:last-child { font-weight: bold; background-color: #e6f7ff; }
-        canvas { margin-top: 32px; max-width: 100%; }
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            background: #fff;
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .legend-note {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        @media (min-width: 900px) {
+            .cards { grid-template-columns: 1fr 1fr; }
+        }
         @media (max-width: 600px) {
-            table, thead, tbody, th, td, tr { display: block; }
-            th { position: static; }
-            td { border: none; padding: 6px 0; text-align: left; }
+            body { font-size: 14px; }
+            th, td { padding: 6px; }
         }
     </style>
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
-    <table border="1" class="dataframe">
+    <div class="table-wrapper">
+        <table border="1" class="dataframe">
   <thead>
     <tr>
       <th></th>
@@ -72,8 +138,8 @@
     </tr>
     <tr>
       <th>Banjica</th>
-      <td>319.88</td>
-      <td>2</td>
+      <td>579.85</td>
+      <td>4</td>
       <td>158,034.28</td>
       <td>126</td>
       <td>172,695.74</td>
@@ -81,7 +147,7 @@
     </tr>
     <tr>
       <th>Borca</th>
-      <td>1,949.99</td>
+      <td>4,749.98</td>
       <td>1</td>
       <td>347,097.28</td>
       <td>97</td>
@@ -135,8 +201,8 @@
     </tr>
     <tr>
       <th>Loznica</th>
-      <td>3,709.96</td>
-      <td>1</td>
+      <td>4,219.93</td>
+      <td>4</td>
       <td>251,303.58</td>
       <td>106</td>
       <td>211,923.56</td>
@@ -144,7 +210,7 @@
     </tr>
     <tr>
       <th>Mladenovac</th>
-      <td>7,299.98</td>
+      <td>5,889.97</td>
       <td>2</td>
       <td>226,564.44</td>
       <td>142</td>
@@ -153,7 +219,7 @@
     </tr>
     <tr>
       <th>NS_Bulevar</th>
-      <td>8,929.94</td>
+      <td>16,484.91</td>
       <td>2</td>
       <td>203,835.43</td>
       <td>78</td>
@@ -216,8 +282,8 @@
     </tr>
     <tr>
       <th>Subotica</th>
-      <td>8,230.88</td>
-      <td>4</td>
+      <td>13,030.86</td>
+      <td>5</td>
       <td>603,446.11</td>
       <td>221</td>
       <td>724,112.23</td>
@@ -225,8 +291,8 @@
     </tr>
     <tr>
       <th>Surcin</th>
-      <td>14,661.52</td>
-      <td>4</td>
+      <td>41,297.41</td>
+      <td>5</td>
       <td>243,826.02</td>
       <td>101</td>
       <td>293,322.27</td>
@@ -234,8 +300,8 @@
     </tr>
     <tr>
       <th>Valjevo</th>
-      <td>0.00</td>
-      <td>0</td>
+      <td>99.99</td>
+      <td>1</td>
       <td>384,770.15</td>
       <td>132</td>
       <td>252,129.20</td>
@@ -243,7 +309,7 @@
     </tr>
     <tr>
       <th>Vrbas</th>
-      <td>51,069.89</td>
+      <td>58,069.88</td>
       <td>2</td>
       <td>236,616.81</td>
       <td>84</td>
@@ -270,8 +336,8 @@
     </tr>
     <tr>
       <th>Zemun</th>
-      <td>189.98</td>
-      <td>2</td>
+      <td>3,189.97</td>
+      <td>3</td>
       <td>213,108.30</td>
       <td>67</td>
       <td>195,749.84</td>
@@ -279,8 +345,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>135,100.55</td>
-      <td>34</td>
+      <td>186,351.28</td>
+      <td>43</td>
       <td>8,308,474.30</td>
       <td>3065</td>
       <td>7,880,776.47</td>
@@ -288,36 +354,59 @@
     </tr>
   </tbody>
 </table>
+    </div>
 
-    <h2>Pazar po satima (poslednja 3 dana)</h2>
-    <canvas id="salesByHour"></canvas>
+    <div class="cards">
+        <div class="card">
+            <h2>Pazar po satima (poslednja 3 dana)</h2>
+            <canvas id="salesByHour"></canvas>
+            <div class="legend-note">X: sat (0–23) • Y: pazar (RSD)</div>
+        </div>
+        <div class="card">
+            <h2>Broj računa po satima (poslednja 3 dana)</h2>
+            <canvas id="receiptsByHour"></canvas>
+            <div class="legend-note">X: sat (0–23) • Y: broj računa</div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-    const ctx = document.getElementById('salesByHour');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [...Array(24).keys()], // 0–23
-            datasets: [{"label": "2025-12-25", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 55490.66, 79609.89, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "rgba(75,192,192,1)", "backgroundColor": "rgba(75,192,192,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-24", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 638852.35, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "rgba(255,99,132,1)", "backgroundColor": "rgba(255,99,132,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-23", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1074.94, 145501.0, 310464.44, 677580.05, 652000.09, 679671.87, 586582.33, 737496.61, 739804.19, 878833.83, 962084.47, 816530.29, 533608.1, 159544.26, 0.0, 0.0], "borderColor": "rgba(54,162,235,1)", "backgroundColor": "rgba(54,162,235,0.2)", "fill": false, "tension": 0.3}]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: "Pazar po satima za poslednja 3 dana"
-                },
-                legend: {
-                    position: 'bottom'
-                }
+    const mkChart = (canvasId, datasets, yTitle) => {
+        const ctx = document.getElementById(canvasId);
+        return new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [...Array(24).keys()], // 0–23
+                datasets: datasets
             },
-            scales: {
-                x: { title: { display: true, text: "Sat" } },
-                y: { title: { display: true, text: "Iznos (RSD)" }, ticks: { callback: (v) => v.toLocaleString('sr-RS') } }
+            options: {
+                responsive: true,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: {
+                        callbacks: {
+                            label: (item) => {
+                                const val = item.parsed.y || 0;
+                                if (yTitle.includes("RSD")) {
+                                    return `${item.dataset.label}: ` + val.toLocaleString('sr-RS');
+                                }
+                                return `${item.dataset.label}: ` + val;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: "Sat" } },
+                    y: { title: { display: true, text: yTitle } }
+                }
             }
-        }
-    });
+        });
+    };
+    const datasetsPazar = [{"label": "2025-12-25 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 62490.65, 123860.63, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "rgba(75,192,192,1)", "backgroundColor": "rgba(75,192,192,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-24 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 638852.35, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "rgba(255,99,132,1)", "backgroundColor": "rgba(255,99,132,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-23 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1074.94, 145501.0, 310464.44, 677580.05, 652000.09, 679671.87, 586582.33, 737496.61, 739804.19, 878833.83, 962084.47, 816530.29, 533608.1, 159544.26, 0.0, 0.0], "borderColor": "rgba(54,162,235,1)", "backgroundColor": "rgba(54,162,235,0.2)", "fill": false, "tension": 0.3}];
+    const datasetsRacuni = [{"label": "2025-12-25 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "rgba(75,192,192,1)", "backgroundColor": "rgba(75,192,192,0.15)", "fill": false, "tension": 0.3}, {"label": "2025-12-24 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 82, 174, 233, 256, 272, 263, 284, 297, 317, 334, 305, 185, 57, 0, 0], "borderColor": "rgba(255,99,132,1)", "backgroundColor": "rgba(255,99,132,0.15)", "fill": false, "tension": 0.3}, {"label": "2025-12-23 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 81, 157, 243, 256, 286, 259, 284, 282, 334, 360, 310, 220, 54, 0, 0], "borderColor": "rgba(54,162,235,1)", "backgroundColor": "rgba(54,162,235,0.15)", "fill": false, "tension": 0.3}];
+    mkChart('salesByHour', datasetsPazar, 'Iznos (RSD)');
+    mkChart('receiptsByHour', datasetsRacuni, 'Broj računa');
     </script>
 </body>
 </html>
