@@ -10,8 +10,16 @@
         body { font-family: Arial, sans-serif; margin: 16px; }
         table { border-collapse: collapse; width: 100%; margin-top: 16px; }
         th, td { border: 1px solid #ccc; padding: 8px; text-align: right; }
-        th { background-color: #f2f2f2; text-align: center; }
+        th { background-color: #f2f2f2; text-align: center; position: sticky; top: 0; }
         td:first-child, th:first-child { text-align: left; }
+        tr:nth-child(even) { background-color: #fafafa; }
+        tr:last-child { font-weight: bold; background-color: #e6f7ff; }
+        canvas { margin-top: 32px; max-width: 100%; }
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            th { position: static; }
+            td { border: none; padding: 6px 0; text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -73,8 +81,8 @@
     </tr>
     <tr>
       <th>Borca</th>
-      <td>0.00</td>
-      <td>0</td>
+      <td>1,949.99</td>
+      <td>1</td>
       <td>347,097.28</td>
       <td>97</td>
       <td>316,126.39</td>
@@ -91,8 +99,8 @@
     </tr>
     <tr>
       <th>Kalenic</th>
-      <td>12,777.84</td>
-      <td>4</td>
+      <td>17,589.77</td>
+      <td>5</td>
       <td>79,722.18</td>
       <td>37</td>
       <td>96,790.07</td>
@@ -136,8 +144,8 @@
     </tr>
     <tr>
       <th>Mladenovac</th>
-      <td>0.00</td>
-      <td>1</td>
+      <td>7,299.98</td>
+      <td>2</td>
       <td>226,564.44</td>
       <td>142</td>
       <td>186,121.51</td>
@@ -145,8 +153,8 @@
     </tr>
     <tr>
       <th>NS_Bulevar</th>
-      <td>5,429.95</td>
-      <td>1</td>
+      <td>8,929.94</td>
+      <td>2</td>
       <td>203,835.43</td>
       <td>78</td>
       <td>198,742.50</td>
@@ -208,8 +216,8 @@
     </tr>
     <tr>
       <th>Subotica</th>
-      <td>6,550.90</td>
-      <td>3</td>
+      <td>8,230.88</td>
+      <td>4</td>
       <td>603,446.11</td>
       <td>221</td>
       <td>724,112.23</td>
@@ -217,8 +225,8 @@
     </tr>
     <tr>
       <th>Surcin</th>
-      <td>13,161.55</td>
-      <td>2</td>
+      <td>14,661.52</td>
+      <td>4</td>
       <td>243,826.02</td>
       <td>101</td>
       <td>293,322.27</td>
@@ -235,7 +243,7 @@
     </tr>
     <tr>
       <th>Vrbas</th>
-      <td>37,569.91</td>
+      <td>51,069.89</td>
       <td>2</td>
       <td>236,616.81</td>
       <td>84</td>
@@ -253,8 +261,8 @@
     </tr>
     <tr>
       <th>Zajecar</th>
-      <td>0.00</td>
-      <td>0</td>
+      <td>679.99</td>
+      <td>1</td>
       <td>291,029.49</td>
       <td>102</td>
       <td>238,772.00</td>
@@ -271,8 +279,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>100,178.74</td>
-      <td>26</td>
+      <td>135,100.55</td>
+      <td>34</td>
       <td>8,308,474.30</td>
       <td>3065</td>
       <td>7,880,776.47</td>
@@ -280,5 +288,36 @@
     </tr>
   </tbody>
 </table>
+
+    <h2>Pazar po satima (poslednja 3 dana)</h2>
+    <canvas id="salesByHour"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const ctx = document.getElementById('salesByHour');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [...Array(24).keys()], // 0–23
+            datasets: [{"label": "2025-12-25", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 55490.66, 79609.89, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "rgba(75,192,192,1)", "backgroundColor": "rgba(75,192,192,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-24", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 638852.35, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "rgba(255,99,132,1)", "backgroundColor": "rgba(255,99,132,0.2)", "fill": false, "tension": 0.3}, {"label": "2025-12-23", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1074.94, 145501.0, 310464.44, 677580.05, 652000.09, 679671.87, 586582.33, 737496.61, 739804.19, 878833.83, 962084.47, 816530.29, 533608.1, 159544.26, 0.0, 0.0], "borderColor": "rgba(54,162,235,1)", "backgroundColor": "rgba(54,162,235,0.2)", "fill": false, "tension": 0.3}]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: "Pazar po satima za poslednja 3 dana"
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            },
+            scales: {
+                x: { title: { display: true, text: "Sat" } },
+                y: { title: { display: true, text: "Iznos (RSD)" }, ticks: { callback: (v) => v.toLocaleString('sr-RS') } }
+            }
+        }
+    });
+    </script>
 </body>
 </html>
