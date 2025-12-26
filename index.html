@@ -115,8 +115,8 @@
     </tr>
     <tr>
       <th>Aviv</th>
-      <td>108,692.57</td>
-      <td>40</td>
+      <td>111,412.56</td>
+      <td>41</td>
       <td>112,506.39</td>
       <td>62</td>
       <td>155,273.16</td>
@@ -151,8 +151,8 @@
     </tr>
     <tr>
       <th>Gornji_Milanovac</th>
-      <td>62,113.44</td>
-      <td>31</td>
+      <td>64,793.41</td>
+      <td>32</td>
       <td>144,213.24</td>
       <td>67</td>
       <td>153,940.86</td>
@@ -214,8 +214,8 @@
     </tr>
     <tr>
       <th>NS_Bulevar</th>
-      <td>91,472.95</td>
-      <td>44</td>
+      <td>95,513.91</td>
+      <td>45</td>
       <td>342,262.08</td>
       <td>91</td>
       <td>203,835.43</td>
@@ -223,8 +223,8 @@
     </tr>
     <tr>
       <th>NS_Sajam</th>
-      <td>147,426.33</td>
-      <td>50</td>
+      <td>147,746.32</td>
+      <td>51</td>
       <td>283,433.98</td>
       <td>99</td>
       <td>375,797.29</td>
@@ -232,8 +232,8 @@
     </tr>
     <tr>
       <th>Nis</th>
-      <td>307,894.66</td>
-      <td>108</td>
+      <td>315,744.56</td>
+      <td>112</td>
       <td>1,141,474.35</td>
       <td>385</td>
       <td>998,856.07</td>
@@ -241,8 +241,8 @@
     </tr>
     <tr>
       <th>Pancevo</th>
-      <td>191,627.40</td>
-      <td>86</td>
+      <td>205,330.29</td>
+      <td>90</td>
       <td>634,171.32</td>
       <td>212</td>
       <td>659,938.05</td>
@@ -259,8 +259,8 @@
     </tr>
     <tr>
       <th>Pozarevac</th>
-      <td>157,324.36</td>
-      <td>51</td>
+      <td>170,695.21</td>
+      <td>55</td>
       <td>376,584.12</td>
       <td>158</td>
       <td>259,704.25</td>
@@ -277,8 +277,8 @@
     </tr>
     <tr>
       <th>Subotica</th>
-      <td>136,935.56</td>
-      <td>65</td>
+      <td>143,151.53</td>
+      <td>66</td>
       <td>400,221.95</td>
       <td>135</td>
       <td>603,446.11</td>
@@ -295,8 +295,8 @@
     </tr>
     <tr>
       <th>Valjevo</th>
-      <td>119,633.68</td>
-      <td>55</td>
+      <td>128,397.70</td>
+      <td>62</td>
       <td>378,556.04</td>
       <td>144</td>
       <td>384,770.15</td>
@@ -322,8 +322,8 @@
     </tr>
     <tr>
       <th>Zajecar</th>
-      <td>134,849.80</td>
-      <td>53</td>
+      <td>137,525.73</td>
+      <td>55</td>
       <td>238,472.68</td>
       <td>112</td>
       <td>291,029.49</td>
@@ -340,8 +340,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>3,430,520.88</td>
-      <td>1312</td>
+      <td>3,492,861.35</td>
+      <td>1338</td>
       <td>8,650,999.32</td>
       <td>3310</td>
       <td>8,304,394.31</td>
@@ -369,14 +369,14 @@
     const mkChart = (canvasId, datasets, yTitle) => {
         const ctx = document.getElementById(canvasId);
         return new Chart(ctx, {
-            type: 'bar',  // stubovi
+            type: 'bar',
             data: {
-                labels: [...Array(24).keys()], // 0–23
+                labels: [...Array(24).keys()],
                 datasets: datasets
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false, // koristi CSS visinu
+                maintainAspectRatio: false,
                 interaction: { mode: 'index', intersect: false },
                 plugins: {
                     legend: { position: 'bottom' },
@@ -399,8 +399,8 @@
             }
         });
     };
-    const datasetsPazar = [{"label": "2025-12-26 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15496.81, 181510.55, 431205.0, 716709.46, 893717.13, 928083.32, 263798.61, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7940.76, 240650.4, 437476.83999999997, 530987.62, 736993.94, 776195.15, 804679.03, 851917.98, 884873.82, 989378.28, 959689.19, 836004.63, 443093.27, 151118.41, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 634772.36, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    const datasetsRacuni = [{"label": "2025-12-26 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 7, 83, 180, 287, 305, 339, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 76, 197, 234, 266, 282, 315, 282, 313, 340, 370, 365, 199, 61, 3, 1], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 82, 174, 233, 256, 272, 263, 284, 297, 317, 334, 305, 185, 57, 0, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
+    const datasetsPazar = [{"label": "2025-12-26 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15496.81, 181510.55, 431205.0, 716709.46, 893717.13, 928083.32, 326139.08, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7940.76, 240650.4, 437476.83999999997, 530987.62, 736993.94, 776195.15, 804679.03, 851917.98, 884873.82, 989378.28, 959689.19, 836004.63, 443093.27, 151118.41, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 634772.36, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
+    const datasetsRacuni = [{"label": "2025-12-26 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 7, 83, 180, 287, 305, 339, 137, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 76, 197, 234, 266, 282, 315, 282, 313, 340, 370, 365, 199, 61, 3, 1], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 82, 174, 233, 256, 272, 263, 284, 297, 317, 334, 305, 185, 57, 0, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
     mkChart('salesByHour', datasetsPazar, 'Iznos (RSD)');
     mkChart('receiptsByHour', datasetsRacuni, 'Broj računa');
     </script>
