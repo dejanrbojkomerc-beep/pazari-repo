@@ -4,108 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Pazari poslednja 3 dana</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-        :root {
-            --border: #ddd;
-            --muted: #666;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 12px;
-        }
-        .topbar {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .btn {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: #f8f8f8;
-            cursor: pointer;
-            font-size: 15px;
-        }
-        .btn:active { transform: scale(0.99); }
-        h2 {
-            margin: 16px 0 8px 0;
-            font-size: 18px;
-        }
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            min-width: 720px;
-        }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 8px;
-            text-align: right;
-            white-space: nowrap;
-        }
-        th {
-            background-color: #f5f5f5;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-        td:first-child, th:first-child {
-            text-align: left;
-            position: sticky;
-            left: 0;
-            z-index: 2;
-            background: #fff;
-        }
-        tr:nth-child(even) { background-color: #fafafa; }
-        tr:last-child { font-weight: bold; background-color: #e6f7ff; }
-        .cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 16px;
-        }
-        .card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            background: #fff;
-        }
-        .card canvas {
-            width: 100% !important;
-            height: 460px !important; /* visoki stubovi */
-        }
-        .legend-note {
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        @media (min-width: 900px) {
-            .cards { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            th, td { padding: 6px; }
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="topbar">
-        <button class="btn" onclick="manualRefresh()">🔄 Osveži sada</button>
-        <span style="color:var(--muted);font-size:13px;">Auto osvežavanje na 300s</span>
-    </div>
-
-    <h2>Pazari za poslednja 3 dana</h2>
-    <div class="table-wrapper">
-        <table border="1" class="dataframe">
+    <h1>Pazari poslednja 3 dana</h1>
+    <table border="1" class="dataframe">
   <thead>
     <tr>
       <th></th>
@@ -135,8 +38,8 @@
     </tr>
     <tr>
       <th>Aviv</th>
-      <td>5,144.95</td>
-      <td>1</td>
+      <td>6,184.94</td>
+      <td>2</td>
       <td>112,506.39</td>
       <td>62</td>
       <td>155,273.16</td>
@@ -144,8 +47,8 @@
     </tr>
     <tr>
       <th>BW_Galerija</th>
-      <td>5,424.98</td>
-      <td>1</td>
+      <td>16,138.98</td>
+      <td>2</td>
       <td>688,340.29</td>
       <td>168</td>
       <td>656,853.68</td>
@@ -180,8 +83,8 @@
     </tr>
     <tr>
       <th>Kalenic</th>
-      <td>4,729.95</td>
-      <td>3</td>
+      <td>8,829.00</td>
+      <td>4</td>
       <td>125,905.77</td>
       <td>50</td>
       <td>79,722.18</td>
@@ -189,8 +92,8 @@
     </tr>
     <tr>
       <th>Karaburma</th>
-      <td>9,759.71</td>
-      <td>3</td>
+      <td>11,359.70</td>
+      <td>4</td>
       <td>219,581.63</td>
       <td>103</td>
       <td>220,434.52</td>
@@ -199,7 +102,7 @@
     <tr>
       <th>Knez</th>
       <td>9,004.94</td>
-      <td>3</td>
+      <td>4</td>
       <td>170,027.28</td>
       <td>69</td>
       <td>145,859.42</td>
@@ -225,8 +128,8 @@
     </tr>
     <tr>
       <th>Mladenovac</th>
-      <td>14,434.82</td>
-      <td>5</td>
+      <td>17,614.80</td>
+      <td>8</td>
       <td>204,211.56</td>
       <td>95</td>
       <td>226,564.44</td>
@@ -279,8 +182,8 @@
     </tr>
     <tr>
       <th>Pozarevac</th>
-      <td>16,120.75</td>
-      <td>3</td>
+      <td>20,680.71</td>
+      <td>4</td>
       <td>376,584.12</td>
       <td>158</td>
       <td>259,704.25</td>
@@ -297,8 +200,8 @@
     </tr>
     <tr>
       <th>Subotica</th>
-      <td>6,554.96</td>
-      <td>6</td>
+      <td>7,294.94</td>
+      <td>7</td>
       <td>400,221.95</td>
       <td>135</td>
       <td>603,446.11</td>
@@ -360,8 +263,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>257,275.76</td>
-      <td>105</td>
+      <td>283,208.71</td>
+      <td>115</td>
       <td>8,650,999.32</td>
       <td>3310</td>
       <td>8,304,394.31</td>
@@ -369,75 +272,50 @@
     </tr>
   </tbody>
 </table>
-    </div>
-
-    <div class="cards">
-        <div class="card">
-            <h2>Pazar po satima (poslednja 3 dana)</h2>
-            <canvas id="salesByHour"></canvas>
-            <div class="legend-note">X: sat (0–23) • Y: pazar (RSD)</div>
-        </div>
-        <div class="card">
-            <h2>Broj računa po satima (poslednja 3 dana)</h2>
-            <canvas id="receiptsByHour"></canvas>
-            <div class="legend-note">X: sat (0–23) • Y: broj računa</div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <h2>Pazar po satima</h2>
+    <canvas id="chartPazar" width="800" height="400"></canvas>
+    <h2>Broj računa po satima</h2>
+    <canvas id="chartRacuni" width="800" height="400"></canvas>
+    <button onclick="refreshData()">🔄 Osveži sada</button>
     <script>
-    async function manualRefresh() {
-        try {
-            const res = await fetch('/refresh');
-            if (res.ok) {
-                // nakon generisanja, učitaj najnoviju verziju
-                location.reload();
-            } else {
-                alert('Osvežavanje nije uspelo.');
-            }
-        } catch(e) {
-            alert('Greška pri osvežavanju.');
-        }
-    }
-
-    const mkChart = (canvasId, datasets, yTitle) => {
-        const ctx = document.getElementById(canvasId);
-        return new Chart(ctx, {
+        const ctxPazar = document.getElementById('chartPazar').getContext('2d');
+        new Chart(ctxPazar, {
             type: 'bar',
             data: {
-                labels: [...Array(24).keys()], // 0–23
-                datasets: datasets
+                labels: [...Array(24).keys()],
+                datasets: [{"label": "2025-12-26 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15496.81, 181510.55, 86201.34999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7940.76, 240650.4, 437476.83999999997, 530987.62, 736993.94, 776195.15, 804679.03, 851917.98, 884873.82, 989378.28, 959689.19, 836004.63, 443093.27, 151118.41, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 634772.36, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
-                interaction: { mode: 'index', intersect: false },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    tooltip: {
-                        callbacks: {
-                            label: (item) => {
-                                const val = item.parsed.y || 0;
-                                if (yTitle.includes("RSD")) {
-                                    return `${item.dataset.label}: ` + val.toLocaleString('sr-RS');
-                                }
-                                return `${item.dataset.label}: ` + val;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: { title: { display: true, text: "Sat" } },
-                    y: { title: { display: true, text: yTitle } }
-                }
+                plugins: { legend: { position: 'top' } }
             }
         });
-    };
 
-    const datasetsPazar = [{"label": "2025-12-26 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 15496.81, 181510.55, 60268.399999999994, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 7940.76, 240650.4, 437476.83999999997, 530987.62, 736993.94, 776195.15, 804679.03, 851917.98, 884873.82, 989378.28, 959689.19, 836004.63, 443093.27, 151118.41, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1199.93, 182131.76, 456121.49, 621800.6, 746652.74, 683032.9, 634772.36, 751929.89, 757340.37, 906782.37, 988955.5599999999, 799942.21, 551552.04, 222180.09, 0.0, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    const datasetsRacuni = [{"label": "2025-12-26 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 7, 81, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 76, 197, 234, 266, 282, 315, 282, 313, 340, 370, 365, 199, 61, 3, 1], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 82, 174, 233, 256, 272, 263, 284, 297, 317, 334, 305, 185, 57, 0, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    mkChart('salesByHour', datasetsPazar, 'Iznos (RSD)');
-    mkChart('receiptsByHour', datasetsRacuni, 'Broj računa');
+        const ctxRacuni = document.getElementById('chartRacuni').getContext('2d');
+        new Chart(ctxRacuni, {
+            type: 'bar',
+            data: {
+                labels: [...Array(24).keys()],
+                datasets: [{"label": "2025-12-26 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 7, 81, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-25 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 76, 197, 234, 266, 282, 315, 282, 313, 340, 370, 365, 199, 61, 3, 1], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-24 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 6, 82, 174, 233, 256, 272, 263, 284, 297, 317, 334, 305, 185, 57, 0, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'top' } }
+            }
+        });
+
+        function refreshData() {
+            fetch('/refresh')
+                .then(r => r.json())
+                .then(data => {
+                    alert("Status osvežavanja: " + data.status);
+                    if (data.status === "ok") {
+                        location.reload();
+                    }
+                })
+                .catch(err => alert("Greška: " + err));
+        }
     </script>
 </body>
 </html>
+    
