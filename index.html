@@ -84,7 +84,7 @@
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
-    <p><strong>Vreme poslednjeg računa:</strong> 10:12</p>
+    <p><strong>Vreme poslednjeg računa:</strong> 10:14</p>
     <div class="table-wrapper">
         <table border="1" class="dataframe">
   <thead>
@@ -104,8 +104,8 @@
   <tbody>
     <tr>
       <th>Aviv</th>
-      <td>10,644.84</td>
-      <td>7</td>
+      <td>18,244.81</td>
+      <td>8</td>
       <td>0.00</td>
       <td>0</td>
     </tr>
@@ -118,8 +118,8 @@
     </tr>
     <tr>
       <th>Borca</th>
-      <td>3,509.98</td>
-      <td>1</td>
+      <td>6,884.95</td>
+      <td>3</td>
       <td>0.00</td>
       <td>0</td>
     </tr>
@@ -180,6 +180,13 @@
       <td>0</td>
     </tr>
     <tr>
+      <th>Pancevo</th>
+      <td>4,640.97</td>
+      <td>2</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
       <th>Paracin</th>
       <td>6,034.05</td>
       <td>2</td>
@@ -188,8 +195,8 @@
     </tr>
     <tr>
       <th>Pozarevac</th>
-      <td>999.95</td>
-      <td>2</td>
+      <td>1,349.94</td>
+      <td>3</td>
       <td>0.00</td>
       <td>0</td>
     </tr>
@@ -209,8 +216,8 @@
     </tr>
     <tr>
       <th>Valjevo</th>
-      <td>169.98</td>
-      <td>2</td>
+      <td>1,008.96</td>
+      <td>4</td>
       <td>0.00</td>
       <td>0</td>
     </tr>
@@ -237,8 +244,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>121,644.69</td>
-      <td>60</td>
+      <td>138,449.57</td>
+      <td>68</td>
       <td>0.00</td>
       <td>13</td>
     </tr>
@@ -294,8 +301,8 @@
             }
         });
     };
-    const datasetsPazar = [{"label": "2026-01-02 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 499.9, 86107.06, 35037.73, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}];
-    const datasetsRacuni = [{"label": "2026-01-02 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 39, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 4, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}];
+    const datasetsPazar = [{"label": "2026-01-02 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 499.9, 86107.06, 51842.61, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}];
+    const datasetsRacuni = [{"label": "2026-01-02 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 39, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 4, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}];
     mkChart('salesByHour', datasetsPazar, 'Iznos (RSD)');
     mkChart('receiptsByHour', datasetsRacuni, 'Broj računa');
     </script>
