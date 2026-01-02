@@ -84,7 +84,7 @@
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
-    <p><strong>Vreme poslednjeg računa:</strong> 09:02</p>
+    <p><strong>Vreme poslednjeg računa:</strong> 09:14</p>
     <div class="table-wrapper">
         <table border="1" class="dataframe">
   <thead>
@@ -144,6 +144,15 @@
     <tr>
       <th>Loznica</th>
       <td>1,614.99</td>
+      <td>1</td>
+      <td>0.00</td>
+      <td>0</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>NS_Sajam</th>
+      <td>2,719.97</td>
       <td>1</td>
       <td>0.00</td>
       <td>0</td>
@@ -215,8 +224,8 @@
     </tr>
     <tr>
       <th>Ukupno</th>
-      <td>3,084.87</td>
-      <td>4</td>
+      <td>5,804.84</td>
+      <td>5</td>
       <td>4,580,550.89</td>
       <td>1625</td>
       <td>7,638,844.05</td>
@@ -274,8 +283,8 @@
             }
         });
     };
-    const datasetsPazar = [{"label": "2026-01-02 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 499.9, 2584.9700000000003, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 34624.85, 289257.16, 589291.51, 669010.38, 806620.77, 754343.5, 610379.74, 538480.99, 288541.99, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-30 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 864.99, 22975.44, 320718.3, 455869.52999999997, 565602.4299999999, 492285.62, 599009.32, 941866.14, 674660.88, 646147.08, 893642.3099999999, 902242.7999999999, 645230.01, 466314.29, 11414.91, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    const datasetsRacuni = [{"label": "2026-01-02 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 118, 215, 247, 279, 233, 224, 192, 97, 0, 0, 0, 0, 0, 0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-30 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 12, 114, 175, 201, 181, 191, 214, 229, 219, 281, 279, 202, 150, 2, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
+    const datasetsPazar = [{"label": "2026-01-02 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 499.9, 5304.94, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 34624.85, 289257.16, 589291.51, 669010.38, 806620.77, 754343.5, 610379.74, 538480.99, 288541.99, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-30 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 864.99, 22975.44, 320718.3, 455869.52999999997, 565602.4299999999, 492285.62, 599009.32, 941866.14, 674660.88, 646147.08, 893642.3099999999, 902242.7999999999, 645230.01, 466314.29, 11414.91, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
+    const datasetsRacuni = [{"label": "2026-01-02 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2025-12-31 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 118, 215, 247, 279, 233, 224, 192, 97, 0, 0, 0, 0, 0, 0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2025-12-30 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 12, 114, 175, 201, 181, 191, 214, 229, 219, 281, 279, 202, 150, 2, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
     mkChart('salesByHour', datasetsPazar, 'Iznos (RSD)');
     mkChart('receiptsByHour', datasetsRacuni, 'Broj računa');
     </script>
