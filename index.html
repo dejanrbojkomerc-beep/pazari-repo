@@ -24,21 +24,22 @@
         .legend-note { color:var(--muted); font-size:12px; margin-top:4px; }
         select { padding:6px 10px; border:1px solid var(--border); border-radius:6px; background:#fff; }
         @media (max-width: 900px) { .cards { grid-template-columns:1fr; } }
-        @media (max-width: 600px) { body { font-size:14px; } th, td { padding:6px; } }
+        @media (max-width: 600px) {
+            body { font-size:14px; }
+            th, td { padding:6px; }
+            .card canvas { height:280px !important; }
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
     <h3 id="lastReceipt">Poslednji račun u -</h3>
-
     <div class="table-wrapper" id="tableWrapper">Učitavam tabelu...</div>
-
     <div class="controls">
         <label for="daySelector"><strong>Dan:</strong></label>
         <select id="daySelector"></select>
     </div>
-
     <div class="cards">
         <div class="card">
             <h2>Pazar po satima</h2>
@@ -51,17 +52,15 @@
             <div class="legend-note">X: sat (0–23) • Y: broj računa</div>
         </div>
     </div>
-
 <script>
+function fontSize() { return window.innerWidth < 600 ? 10 : 12; }
 async function loadData() {
   try {
-    const res = await fetch("data.json?" + Date.now()); // cache busting
+    const res = await fetch("data.json?" + Date.now());
     const data = await res.json();
-
     document.getElementById("lastReceipt").textContent = "Poslednji račun u " + (data.last_receipt || "-");
     document.getElementById("tableWrapper").innerHTML = data.table_html || "";
 
-    // Populate day selector
     const selector = document.getElementById("daySelector");
     selector.innerHTML = "";
     (data.day_options || []).forEach((label, idx) => {
@@ -85,17 +84,19 @@ async function loadData() {
           maintainAspectRatio: false,
           plugins: {
             legend: { display: false },
-            tooltip: { callbacks: {
-              label: (item) => {
-                const val = item.parsed.y || 0;
-                if (yTitle.includes("RSD")) return ' ' + val.toLocaleString('sr-RS') + ' RSD';
-                return ' ' + val.toLocaleString('sr-RS');
+            tooltip: {
+              callbacks: {
+                label: (item) => {
+                  const val = item.parsed.y || 0;
+                  if (yTitle.includes("RSD")) return ' ' + val.toLocaleString('sr-RS') + ' RSD';
+                  return ' ' + val.toLocaleString('sr-RS');
+                }
               }
-            } }
+            }
           },
           scales: {
-            x: { title: { display: true, text: "Sat" } },
-            y: { title: { display: true, text: yTitle } }
+            x: { title: { display: true, text: "Sat" }, ticks: { font: { size: fontSize() } } },
+            y: { title: { display: true, text: yTitle }, ticks: { font: { size: fontSize() } } }
           }
         }
       });
@@ -109,16 +110,12 @@ async function loadData() {
     }
 
     selector.addEventListener("change", e => renderCharts(parseInt(e.target.value)));
+    window.addEventListener('resize', () => renderCharts(parseInt(selector.value)));
     renderCharts(0);
-  } catch (e) {
-    console.error("Greška pri učitavanju data.json", e);
-  }
+  } catch (e) { console.error("Greška pri učitavanju data.json", e); }
 }
-
-// inicijalno učitavanje
 loadData();
-// opcionalno periodično osvežavanje bez reload-a stranice
-setInterval(loadData, 300000); // 5 min
+setInterval(loadData, 300000);
 </script>
 </body>
 </html>
