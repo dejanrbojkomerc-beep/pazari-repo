@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,378 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="300">
     <style>
-        :root {
-            --border: #ddd;
-            --muted: #666;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 12px;
-        }
-        h2 {
-            margin: 16px 0 4px 0;
-            font-size: 18px;
-        }
-        h3 {
-            margin: 0 0 12px 0;
-            font-size: 14px;
-            color: #333;
-        }
-        .table-wrapper {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-        }
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            min-width: 720px;
-        }
-        th, td {
-            border: 1px solid var(--border);
-            padding: 8px;
-            text-align: right;
-            white-space: nowrap;
-        }
-        th {
-            background-color: #f5f5f5;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-        }
-        td:first-child, th:first-child {
-            text-align: left;
-            position: sticky;
-            left: 0;
-            z-index: 2;
-            background: #fff;
-        }
-        tr:nth-child(even) { background-color: #fafafa; }
-        tr:last-child { font-weight: bold; background-color: #e6f7ff; }
-        .controls {
-            margin: 16px 0;
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 8px;
-        }
-        .card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            background: #fff;
-        }
-        .card canvas {
-            width: 100% !important;
-            height: 460px !important;
-        }
-        .legend-note {
-            color: var(--muted);
-            font-size: 12px;
-            margin-top: 4px;
-        }
-        select {
-            padding: 6px 10px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            background: #fff;
-        }
-        @media (min-width: 900px) {
-            .cards { grid-template-columns: 1fr 1fr; }
-        }
-        @media (max-width: 600px) {
-            body { font-size: 14px; }
-            th, td { padding: 6px; }
-        }
+        :root { --border:#ddd; --muted:#666; }
+        body { font-family: Arial, sans-serif; margin:12px; }
+        h2 { margin:16px 0 4px 0; font-size:18px; }
+        h3 { margin:0 0 12px 0; font-size:14px; color:#333; }
+        .table-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--border); border-radius:8px; }
+        table { border-collapse:collapse; width:100%; min-width:720px; }
+        th, td { border:1px solid var(--border); padding:8px; text-align:right; white-space:nowrap; }
+        th { background:#f5f5f5; text-align:center; position:sticky; top:0; z-index:1; }
+        td:first-child, th:first-child { text-align:left; position:sticky; left:0; z-index:2; background:#fff; }
+        tr:nth-child(even) { background:#fafafa; }
+        tr:last-child { font-weight:bold; background:#e6f7ff; }
+        .controls { margin:16px 0; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+        .cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
+        .card { border:1px solid var(--border); border-radius:8px; padding:12px; background:#fff; }
+        .card canvas { width:100% !important; height:460px !important; }
+        .legend-note { color:var(--muted); font-size:12px; margin-top:4px; }
+        select { padding:6px 10px; border:1px solid var(--border); border-radius:6px; background:#fff; }
+        @media (max-width: 900px) { .cards { grid-template-columns:1fr; } }
+        @media (max-width: 600px) { body { font-size:14px; } th, td { padding:6px; } }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <h2>Pazari za poslednja 3 dana</h2>
-    <h3>Poslednji račun u 18:31</h3>
+    <h3 id="lastReceipt">Poslednji račun u -</h3>
 
-    <div class="table-wrapper">
-        <table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="2" halign="left">2026-01-05</th>
-      <th colspan="2" halign="left">2026-01-04</th>
-      <th colspan="2" halign="left">2026-01-03</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>Pazar</th>
-      <th>Broj računa</th>
-      <th>Pazar</th>
-      <th>Broj računa</th>
-      <th>Pazar</th>
-      <th>Broj računa</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>TC_Beo</th>
-      <td>169,614.54</td>
-      <td>65</td>
-      <td>207,976.50</td>
-      <td>74</td>
-      <td>276,479.45</td>
-      <td>119</td>
-    </tr>
-    <tr>
-      <th>Arandjelovac</th>
-      <td>250,042.09</td>
-      <td>82</td>
-      <td>305,477.51</td>
-      <td>137</td>
-      <td>409,488.03</td>
-      <td>181</td>
-    </tr>
-    <tr>
-      <th>Aviv</th>
-      <td>103,534.08</td>
-      <td>58</td>
-      <td>56,825.37</td>
-      <td>39</td>
-      <td>126,092.62</td>
-      <td>56</td>
-    </tr>
-    <tr>
-      <th>BW_Galerija</th>
-      <td>415,479.19</td>
-      <td>82</td>
-      <td>297,125.28</td>
-      <td>103</td>
-      <td>436,611.57</td>
-      <td>123</td>
-    </tr>
-    <tr>
-      <th>Banjica</th>
-      <td>165,625.72</td>
-      <td>107</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>161,308.42</td>
-      <td>82</td>
-    </tr>
-    <tr>
-      <th>Borca</th>
-      <td>317,100.09</td>
-      <td>140</td>
-      <td>220,955.17</td>
-      <td>105</td>
-      <td>351,539.51</td>
-      <td>146</td>
-    </tr>
-    <tr>
-      <th>Gornji_Milanovac</th>
-      <td>108,523.79</td>
-      <td>64</td>
-      <td>348,616.87</td>
-      <td>143</td>
-      <td>312,332.85</td>
-      <td>154</td>
-    </tr>
-    <tr>
-      <th>Kalenic</th>
-      <td>110,583.00</td>
-      <td>41</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>43,583.55</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <th>Karaburma</th>
-      <td>123,831.70</td>
-      <td>55</td>
-      <td>141,182.78</td>
-      <td>68</td>
-      <td>142,539.88</td>
-      <td>86</td>
-    </tr>
-    <tr>
-      <th>Knez</th>
-      <td>145,006.61</td>
-      <td>37</td>
-      <td>35,951.76</td>
-      <td>16</td>
-      <td>97,730.45</td>
-      <td>46</td>
-    </tr>
-    <tr>
-      <th>Leskovac</th>
-      <td>259,441.40</td>
-      <td>99</td>
-      <td>191,705.58</td>
-      <td>88</td>
-      <td>154,317.21</td>
-      <td>103</td>
-    </tr>
-    <tr>
-      <th>Loznica</th>
-      <td>174,784.25</td>
-      <td>81</td>
-      <td>147,538.18</td>
-      <td>61</td>
-      <td>313,865.23</td>
-      <td>145</td>
-    </tr>
-    <tr>
-      <th>Mladenovac</th>
-      <td>123,152.76</td>
-      <td>81</td>
-      <td>145,742.23</td>
-      <td>129</td>
-      <td>213,762.88</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>NS_Bulevar</th>
-      <td>183,262.50</td>
-      <td>76</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>155,042.60</td>
-      <td>50</td>
-    </tr>
-    <tr>
-      <th>NS_Sajam</th>
-      <td>169,941.62</td>
-      <td>62</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>146,919.30</td>
-      <td>57</td>
-    </tr>
-    <tr>
-      <th>Nis</th>
-      <td>423,810.33</td>
-      <td>164</td>
-      <td>369,187.50</td>
-      <td>177</td>
-      <td>529,016.29</td>
-      <td>210</td>
-    </tr>
-    <tr>
-      <th>Pancevo</th>
-      <td>450,693.18</td>
-      <td>177</td>
-      <td>334,094.76</td>
-      <td>148</td>
-      <td>477,046.11</td>
-      <td>219</td>
-    </tr>
-    <tr>
-      <th>Paracin</th>
-      <td>216,762.42</td>
-      <td>81</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>76,284.80</td>
-      <td>35</td>
-    </tr>
-    <tr>
-      <th>Pozarevac</th>
-      <td>195,260.36</td>
-      <td>78</td>
-      <td>205,720.44</td>
-      <td>97</td>
-      <td>292,902.80</td>
-      <td>145</td>
-    </tr>
-    <tr>
-      <th>Stadion</th>
-      <td>239,892.22</td>
-      <td>97</td>
-      <td>186,528.71</td>
-      <td>88</td>
-      <td>320,741.11</td>
-      <td>124</td>
-    </tr>
-    <tr>
-      <th>Subotica</th>
-      <td>230,967.21</td>
-      <td>104</td>
-      <td>194,055.34</td>
-      <td>88</td>
-      <td>278,278.05</td>
-      <td>115</td>
-    </tr>
-    <tr>
-      <th>Surcin</th>
-      <td>231,144.97</td>
-      <td>102</td>
-      <td>138,082.61</td>
-      <td>65</td>
-      <td>219,282.42</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <th>Valjevo</th>
-      <td>212,820.99</td>
-      <td>100</td>
-      <td>299,892.13</td>
-      <td>149</td>
-      <td>343,738.11</td>
-      <td>183</td>
-    </tr>
-    <tr>
-      <th>Vrbas</th>
-      <td>287,507.53</td>
-      <td>105</td>
-      <td>125,289.21</td>
-      <td>49</td>
-      <td>112,840.25</td>
-      <td>59</td>
-    </tr>
-    <tr>
-      <th>Vrsac</th>
-      <td>154,524.91</td>
-      <td>79</td>
-      <td>78,673.10</td>
-      <td>51</td>
-      <td>199,738.51</td>
-      <td>99</td>
-    </tr>
-    <tr>
-      <th>Zajecar</th>
-      <td>149,785.91</td>
-      <td>84</td>
-      <td>158,788.07</td>
-      <td>85</td>
-      <td>240,275.15</td>
-      <td>184</td>
-    </tr>
-    <tr>
-      <th>Zemun</th>
-      <td>118,749.65</td>
-      <td>47</td>
-      <td>0.00</td>
-      <td>0</td>
-      <td>96,947.15</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>Ukupno</th>
-      <td>5,731,843.02</td>
-      <td>2348</td>
-      <td>4,189,409.10</td>
-      <td>1960</td>
-      <td>6,528,704.30</td>
-      <td>3005</td>
-    </tr>
-  </tbody>
-</table>
-    </div>
+    <div class="table-wrapper" id="tableWrapper">Učitavam tabelu...</div>
 
     <div class="controls">
         <label for="daySelector"><strong>Dan:</strong></label>
@@ -398,74 +52,73 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-    const datasetsPazar = [{"label": "2026-01-05 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 2006.97, 69044.04, 211813.61, 472998.46, 611787.95, 620342.65, 843219.02, 858866.48, 780252.97, 866230.62, 395280.25, 0.0, 0.0, 0.0, 0.0, 0.0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2026-01-04 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 92730.18, 234409.63, 408478.73, 491518.85, 527355.78, 440180.83, 422052.83, 400972.75, 351158.49, 343636.82, 273465.5, 158094.45, 45354.259999999995, 0.0, 0.0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2026-01-03 - Pazar", "data": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 85936.91, 314426.77, 524998.3, 721986.97, 828420.35, 755126.0599999999, 745954.77, 618764.89, 622861.7999999999, 483380.45, 431593.05, 335260.33, 59993.65, 0.0, 0.0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    const datasetsRacuni = [{"label": "2026-01-05 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 3, 37, 94, 189, 258, 280, 323, 342, 325, 328, 169, 0, 0, 0, 0, 0], "borderColor": "#4CAF50", "backgroundColor": "#4CAF50", "borderWidth": 2}, {"label": "2026-01-04 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 0, 41, 113, 178, 217, 248, 209, 197, 188, 158, 179, 121, 87, 24, 0, 0], "borderColor": "#FF5722", "backgroundColor": "#FF5722", "borderWidth": 2}, {"label": "2026-01-03 - Broj ra\u010duna", "data": [0, 0, 0, 0, 0, 0, 0, 0, 4, 54, 137, 260, 322, 352, 334, 327, 290, 272, 261, 213, 149, 30, 0, 0], "borderColor": "#2196F3", "backgroundColor": "#2196F3", "borderWidth": 2}];
-    const dayOptions = ["2026-01-05", "2026-01-04", "2026-01-03"];
+<script>
+async function loadData() {
+  try {
+    const res = await fetch("data.json?" + Date.now()); // cache busting
+    const data = await res.json();
 
-    // Popuni dropdown sa danima
-    const selector = document.getElementById('daySelector');
-    dayOptions.forEach((label, idx) => {
-        const opt = document.createElement('option');
-        opt.value = idx;
-        opt.textContent = label;
-        selector.appendChild(opt);
+    document.getElementById("lastReceipt").textContent = "Poslednji račun u " + (data.last_receipt || "-");
+    document.getElementById("tableWrapper").innerHTML = data.table_html || "";
+
+    // Populate day selector
+    const selector = document.getElementById("daySelector");
+    selector.innerHTML = "";
+    (data.day_options || []).forEach((label, idx) => {
+      const opt = document.createElement("option");
+      opt.value = idx;
+      opt.textContent = label;
+      selector.appendChild(opt);
     });
     selector.value = 0;
 
     let chartSales = null;
     let chartReceipts = null;
 
-    const mkBarChart = (canvasId, dataset, yTitle) => {
-        const ctx = document.getElementById(canvasId);
-        return new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: [...Array(24).keys()],
-                datasets: [{
-                    ...dataset,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: (item) => {
-                                const val = item.parsed.y || 0;
-                                if (yTitle.includes("RSD")) {
-                                    return ' ' + val.toLocaleString('sr-RS') + ' RSD';
-                                }
-                                return ' ' + val.toLocaleString('sr-RS');
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: { title: { display: true, text: "Sat" } },
-                    y: { title: { display: true, text: yTitle } }
-                }
-            }
-        });
-    };
-
-    function renderCharts(dayIndex) {
-        if (chartSales) chartSales.destroy();
-        if (chartReceipts) chartReceipts.destroy();
-        chartSales = mkBarChart('salesByHour', datasetsPazar[dayIndex], 'Iznos (RSD)');
-        chartReceipts = mkBarChart('receiptsByHour', datasetsRacuni[dayIndex], 'Broj računa');
+    function mkBarChart(canvasId, dataset, yTitle) {
+      const ctx = document.getElementById(canvasId);
+      return new Chart(ctx, {
+        type: 'bar',
+        data: { labels: [...Array(24).keys()], datasets: [{ ...dataset, borderWidth: 1 }] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: {
+              label: (item) => {
+                const val = item.parsed.y || 0;
+                if (yTitle.includes("RSD")) return ' ' + val.toLocaleString('sr-RS') + ' RSD';
+                return ' ' + val.toLocaleString('sr-RS');
+              }
+            } }
+          },
+          scales: {
+            x: { title: { display: true, text: "Sat" } },
+            y: { title: { display: true, text: yTitle } }
+          }
+        }
+      });
     }
 
-    selector.addEventListener('change', (e) => {
-        renderCharts(parseInt(e.target.value));
-    });
+    function renderCharts(dayIndex) {
+      if (chartSales) chartSales.destroy();
+      if (chartReceipts) chartReceipts.destroy();
+      chartSales = mkBarChart('salesByHour', (data.datasets_pazar || [])[dayIndex], 'Iznos (RSD)');
+      chartReceipts = mkBarChart('receiptsByHour', (data.datasets_racuni || [])[dayIndex], 'Broj računa');
+    }
 
-    // inicijalni prikaz
+    selector.addEventListener("change", e => renderCharts(parseInt(e.target.value)));
     renderCharts(0);
-    </script>
+  } catch (e) {
+    console.error("Greška pri učitavanju data.json", e);
+  }
+}
+
+// inicijalno učitavanje
+loadData();
+// opcionalno periodično osvežavanje bez reload-a stranice
+setInterval(loadData, 300000); // 5 min
+</script>
 </body>
 </html>
