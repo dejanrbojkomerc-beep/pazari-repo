@@ -1,121 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Pazari poslednja 3 dana</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="refresh" content="300">
-    <style>
-        :root { --border:#ddd; --muted:#666; }
-        body { font-family: Arial, sans-serif; margin:12px; }
-        h2 { margin:16px 0 4px 0; font-size:18px; }
-        h3 { margin:0 0 12px 0; font-size:14px; color:#333; }
-        .table-wrapper { overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--border); border-radius:8px; }
-        table { border-collapse:collapse; width:100%; min-width:720px; }
-        th, td { border:1px solid var(--border); padding:8px; text-align:right; white-space:nowrap; }
-        th { background:#f5f5f5; text-align:center; position:sticky; top:0; z-index:1; }
-        td:first-child, th:first-child { text-align:left; position:sticky; left:0; z-index:2; background:#fff; }
-        tr:nth-child(even) { background:#fafafa; }
-        tr:last-child { font-weight:bold; background:#e6f7ff; }
-        .controls { margin:16px 0; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-        .cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px; }
-        .card { border:1px solid var(--border); border-radius:8px; padding:12px; background:#fff; }
-        .card canvas { width:100% !important; height:460px !important; }
-        .legend-note { color:var(--muted); font-size:12px; margin-top:4px; }
-        select { padding:6px 10px; border:1px solid var(--border); border-radius:6px; background:#fff; }
-        @media (max-width: 900px) { .cards { grid-template-columns:1fr; } }
-        @media (max-width: 600px) {
-            body { font-size:14px; }
-            th, td { padding:6px; }
-            .card canvas { height:280px !important; }
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="utf-8">
+  <title>Pazari po satima</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h2>Pazari za poslednja 3 dana</h2>
-    <h3 id="lastReceipt">Poslednji račun u -</h3>
-    <div class="table-wrapper" id="tableWrapper">Učitavam tabelu...</div>
-    <div class="controls">
-        <label for="daySelector"><strong>Dan:</strong></label>
-        <select id="daySelector"></select>
-    </div>
-    <div class="cards">
-        <div class="card">
-            <h2>Pazar po satima</h2>
-            <canvas id="salesByHour"></canvas>
-            <div class="legend-note">X: sat (0–23) • Y: pazar (RSD)</div>
-        </div>
-        <div class="card">
-            <h2>Broj računa po satima</h2>
-            <canvas id="receiptsByHour"></canvas>
-            <div class="legend-note">X: sat (0–23) • Y: broj računa</div>
-        </div>
-    </div>
-<script>
-function fontSize() { return window.innerWidth < 600 ? 10 : 12; }
-async function loadData() {
-  try {
-    const res = await fetch("data.json?" + Date.now());
-    const data = await res.json();
-    document.getElementById("lastReceipt").textContent = "Poslednji račun u " + (data.last_receipt || "-");
-    document.getElementById("tableWrapper").innerHTML = data.table_html || "";
+  <h2>Pazari po satima</h2>
+  <h3 id="lastReceipt">Poslednji račun u -</h3>
 
-    const selector = document.getElementById("daySelector");
-    selector.innerHTML = "";
-    (data.day_options || []).forEach((label, idx) => {
-      const opt = document.createElement("option");
-      opt.value = idx;
-      opt.textContent = label;
-      selector.appendChild(opt);
-    });
-    selector.value = 0;
+  <label for="dateSelect">Izaberi datum:</label>
+  <select id="dateSelect"></select>
 
-    let chartSales = null;
-    let chartReceipts = null;
+  <canvas id="pazarChart" width="800" height="400"></canvas>
 
-    function mkBarChart(canvasId, dataset, yTitle) {
-      const ctx = document.getElementById(canvasId);
-      return new Chart(ctx, {
+  <script>
+    let chart;
+
+    async function loadData(){
+      try{
+        const res = await fetch("data.json?" + Date.now());
+        const data = await res.json();
+
+        const select = document.getElementById("dateSelect");
+        select.innerHTML = "";
+        (data.available_dates || []).forEach(d => {
+          const opt = document.createElement("option");
+          opt.value = d;
+          opt.textContent = d;
+          select.appendChild(opt);
+        });
+
+        document.getElementById("lastReceipt").textContent =
+          "Poslednji račun u " + (data.last_receipt || "-");
+
+        if(select.value){
+          renderChart(data, select.value);
+        }
+        select.onchange = () => renderChart(data, select.value);
+
+      }catch(e){ console.error(e); }
+    }
+
+    function renderChart(data, selectedDate){
+      const ctx = document.getElementById("pazarChart").getContext("2d");
+      const dataset = data.by_date[selectedDate] || {};
+      const labels = dataset.hours || [];
+      const values = dataset.values || [];
+
+      if(chart){ chart.destroy(); }
+      chart = new Chart(ctx, {
         type: 'bar',
-        data: { labels: [...Array(24).keys()], datasets: [{ ...dataset, borderWidth: 1 }] },
+        data: {
+          labels: labels,
+          datasets: [{
+            label: "Pazar (RSD)",
+            data: values,
+            backgroundColor: "rgba(75,192,192,0.6)"
+          }]
+        },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              callbacks: {
-                label: (item) => {
-                  const val = item.parsed.y || 0;
-                  if (yTitle.includes("RSD")) return ' ' + val.toLocaleString('sr-RS') + ' RSD';
-                  return ' ' + val.toLocaleString('sr-RS');
-                }
-              }
-            }
-          },
           scales: {
-            x: { title: { display: true, text: "Sat" }, ticks: { font: { size: fontSize() } } },
-            y: { title: { display: true, text: yTitle }, ticks: { font: { size: fontSize() } } }
+            x: { title: { display: true, text: "Sat" } },
+            y: { title: { display: true, text: "Iznos (RSD)" } }
           }
         }
       });
     }
 
-    function renderCharts(dayIndex) {
-      if (chartSales) chartSales.destroy();
-      if (chartReceipts) chartReceipts.destroy();
-      chartSales = mkBarChart('salesByHour', (data.datasets_pazar || [])[dayIndex], 'Iznos (RSD)');
-      chartReceipts = mkBarChart('receiptsByHour', (data.datasets_racuni || [])[dayIndex], 'Broj računa');
-    }
-
-    selector.addEventListener("change", e => renderCharts(parseInt(e.target.value)));
-    window.addEventListener('resize', () => renderCharts(parseInt(selector.value)));
-    renderCharts(0);
-  } catch (e) { console.error("Greška pri učitavanju data.json", e); }
-}
-loadData();
-setInterval(loadData, 300000);
-</script>
+    loadData();
+    setInterval(loadData, 300000);
+  </script>
 </body>
 </html>
